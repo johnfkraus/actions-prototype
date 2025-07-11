@@ -1,0 +1,22 @@
+name: Deploy Website # The name of your workflow
+
+on:
+  push:
+    branches:
+      - main # The branch that triggers the deployment (e.g., main or master)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # The operating system to run the workflow on
+
+    name: Deploying to surge # The name of this job
+
+    steps:
+      - uses: actions/checkout@v3 # Checks out your repository code
+      - uses: actions/setup-node@v3 # Sets up the Node.js environment
+        with:
+          node-version: 18 # Specifies the Node.js version to use
+      - run: npm install -g surge # Installs Surge globally
+      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }} # Deploys your site to Surge
+        # Replace "." with the path to your static site's build directory if needed (e.g., "dist" or "build")
+
