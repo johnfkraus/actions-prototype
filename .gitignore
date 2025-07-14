@@ -1,0 +1,8 @@
+archives
+secret-notes.md
+secret-notes2.md
+
+.DS_Store
+.idea
+**/.idea
+**/.idea/*

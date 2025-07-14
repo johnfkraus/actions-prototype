@@ -8,15 +8,19 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up secret file
       env:
-        DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
-        DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+        SURGE_DOMAIN: ${{ secrets.SURGE_DOMAIN }}
+        SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        # DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
+        # DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
       run: |
-        echo $DEBUG_PASSWORD >> secrets.txt
-        echo $DEBUG_SECRET_KEY >> secrets.txt
+        echo "SURGE_DOMAIN=$SURGE_DOMAIN" > secrets.txt
+        echo "SURGE_TOKEN=$SURGE_TOKEN" >> secrets.txt
+#         echo $DEBUG_PASSWORD >> secrets.txt
+#         echo $DEBUG_SECRET_KEY >> secrets.txt
 
     - name: Run tmate
-      uses: mxschmitt/action-tmate@v2
+      uses: mxschmitt/action-tmate@v3
