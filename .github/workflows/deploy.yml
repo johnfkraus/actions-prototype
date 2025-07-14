@@ -9,8 +9,8 @@ jobs:
     name: Deploying to surge # The name of this job
 
     steps:
-      - uses: actions/checkout@v3 # Checks out your repository code
-      - uses: actions/setup-node@v3 # Sets up the Node.js environment
+      - uses: actions/checkout@v4 # Checks out your repository code
+      - uses: actions/setup-node@v4 # Sets up the Node.js environment
         with:
           node-version: 18 # Specifies the Node.js version to use
       - run: npm install -g surge # Installs Surge globally
