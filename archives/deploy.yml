@@ -17,6 +17,6 @@ jobs:
         with:
           node-version: 18 # Specifies the Node.js version to use
       - run: npm install -g surge # Installs Surge globally
-      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }} # Deploys your site to Surge
+      - run: surge ./ ${{ secrets.SURGE_DOMAIN2 }} --token ${{ secrets.SURGE_TOKEN }} # Deploys your site to Surge
         # Replace "." with the path to your static site's build directory if needed (e.g., "dist" or "build")
 
