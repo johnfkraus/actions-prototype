@@ -1,22 +1,22 @@
-name: Deploy Website # The name of your workflow
-
-on:
-  push:
-    branches:
-      - main # The branch that triggers the deployment (e.g., main or master)
+name: Show Me the S3cr3tz
+on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest # The operating system to run the workflow on
-
-    name: Deploying to surge # The name of this job
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3 # Checks out your repository code
-      - uses: actions/setup-node@v3 # Sets up the Node.js environment
-        with:
-          node-version: 18 # Specifies the Node.js version to use
-      - run: npm install -g surge # Installs Surge globally
-      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }} # Deploys your site to Surge
-        # Replace "." with the path to your static site's build directory if needed (e.g., "dist" or "build")
+    - name: Check out code
+      uses: actions/checkout@v2
 
+    - name: Set up secret file
+      env:
+        DEBUG_PASSWORD: ${{ secrets.DEBUG_PASSWORD }}
+        DEBUG_SECRET_KEY: ${{ secrets.DEBUG_SECRET_KEY }}
+      run: |
+        echo $DEBUG_PASSWORD >> secrets.txt
+        echo $DEBUG_SECRET_KEY >> secrets.txt
+
+    - name: Run tmate
+      uses: mxschmitt/action-tmate@v2
