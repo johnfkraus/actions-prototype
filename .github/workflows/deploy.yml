@@ -1,9 +1,6 @@
-name: Deploy Website # The name of your workflow
+name: Deploy Website to Surge
 
-on:
-  push:
-    branches:
-      - main # The branch that triggers the deployment (e.g., main or master)
+on: [push]
 
 jobs:
   build:
