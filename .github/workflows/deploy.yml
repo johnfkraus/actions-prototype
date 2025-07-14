@@ -16,3 +16,6 @@ jobs:
       - run: npm install -g surge # Installs Surge globally
       - run: surge ./ ${{ secrets.SURGE_DOMAIN2 }} --token ${{ secrets.SURGE_TOKEN }} # Deploys your site to Surge
         # Replace "." with the path to your static site's build directory if needed (e.g., "dist" or "build")
+
+      - name: Check URL
+        run: curl -sL -D - -o /dev/null https://${{secrets.SURGE_DOMAIN2}}/
